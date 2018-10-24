@@ -1,6 +1,21 @@
 import bs4
-from urllib.request import urlopen as ureq
+import requests
 from bs4 import BeautifulSoup as soup
+from urllib.request import urlopen as ureq
+
+
+
+# Dealing with loggin stuff
+
+
+form_data = {'username': 'myusername', 'pass': 'secretpassword'}
+with requests.Session() as sesh:
+    sesh.post(login_post_url, data=form_data)
+    response = sesh.get(internal_url)
+    html = response.text
+
+soup = soup(html)    
+
 
 my_url = "https://www.newegg.ca/Xbox-One-Systems/SubCategory/ID-3216?Tid=22812"
 
